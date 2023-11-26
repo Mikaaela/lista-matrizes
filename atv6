@@ -1,0 +1,77 @@
+#include <stdio.h>
+#define SIZE 4
+
+void imprimirMatriz(int matriz[SIZE][SIZE]) {
+    printf("Matriz:\n");
+    for(int i=0; i<SIZE; i++) {
+        for(int j=0; j<SIZE; j++) {
+            printf("%d ", matriz[i][j]);
+        }
+        printf("\n");
+    }
+}
+
+int somarQuadradosPrimeiraColuna(int matriz[SIZE][SIZE]) {
+    int soma = 0;
+    for(int i=0; i<SIZE; i++) {
+        soma += matriz[i][0] * matriz[i][0];
+    }
+    return soma;
+}
+
+int somarElementosTerceiraLinha(int matriz[SIZE][SIZE]) {
+    int soma = 0;
+    for(int j=0; j<SIZE; j++) {
+        soma += matriz[2][j];
+    }
+    return soma;
+}
+
+int somarElementosDiagonalPrincipal(int matriz[SIZE][SIZE]) {
+    int soma = 0;
+    for(int i=0; i<SIZE; i++) {
+        soma += matriz[i][i];
+    }
+    return soma;
+}
+
+int somarElementosIndiceParSegundaLinha(int matriz[SIZE][SIZE]) {
+    int soma = 0;
+    for(int j=0; j<SIZE; j++) {
+        if(j % 2 == 0) {
+            soma += matriz[1][j];
+        }
+    }
+    return soma;
+}
+
+int main() {
+    int matriz[SIZE][SIZE];
+
+    for(int i=0; i<SIZE; i++) {
+        for(int j=0; j<SIZE; j++) {
+            printf("Informe o valor do elemento da posição [%d][%d]: ", i, j);
+            scanf("%d", &matriz[i][j]);
+        }
+    }
+
+    imprimirMatriz(matriz);
+    
+    int somaQuadrados = somarQuadradosPrimeiraColuna(matriz);
+    printf("Soma dos quadrados dos elementos da primeira coluna: %d
+", somaQuadrados);
+    
+    int somaLinha = somarElementosTerceiraLinha(matriz);
+    printf("Soma dos elementos da terceira linha: %d
+", somaLinha);
+    
+    int somaDiagonal = somarElementosDiagonalPrincipal(matriz);
+    printf("Soma dos elementos da diagonal principal: %d
+", somaDiagonal);
+    
+    int somaIndicePar = somarElementosIndiceParSegundaLinha(matriz);
+    printf("Soma dos elementos de índice par da segunda linha: %d
+", somaIndicePar);
+
+    return 0;
+}
